@@ -1,0 +1,5 @@
+hello pattern
+another pattern
+not here
+dont print this 
+last pattern
