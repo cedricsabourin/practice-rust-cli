@@ -1,25 +1,21 @@
-use clap::Parser;
-
-#[derive(Parser)]
-struct Cli {
-    /// The pattern to look for
-    pattern: String,
-
-    /// The path to look for
-    path: std::path::PathBuf,
-}
-
-
+use std::io;
 
 fn main() {
-    let args = Cli::parse();
+    let mut input = String::new();
+    let mut result: i32 = 0;
 
-    let content = std::fs::read_to_string(&args.path).expect("FAILED TO READ FILEPATH");
+    loop {
+        io::stdin().read_line(&mut input).expect("Error reading input");
 
-    for line in content.lines() {
-        if line.contains(&args.pattern) {
-            println!("{}", line);
+        if input.trim() == "Q" { 
+            break; 
         }
+
+        result += input.trim().parse::<i32>().expect("Error parsing input");
+        
+        input.clear();
     }
 
+    println!("{:?}", result)
+        
 }
